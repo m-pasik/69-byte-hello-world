@@ -18,7 +18,7 @@ This is how the executable looks when represented as hex.
 
 ## Code explanation
 The code isn't really very complicated. It's basically just what you'd see in some assembly tutorial, but crammed into the header of the executable.
-```asm
+```gas
 0x14:
     mov $0x4, %al       # system call number (sys_write)
     jmp 0x20            # jump to the next segment
