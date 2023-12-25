@@ -1,4 +1,4 @@
-# 76 byte Hello World!
+# 69 byte Hello World!
 A Tiny Linux "Hello, World!".
 
 ## Simple explanation 
