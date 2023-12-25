@@ -32,7 +32,7 @@ x14:
     mov al, 0x4         ; System call number (sys_write)
     jmp x20             ; Jump to the next block of code (at 0x20)
 x20:
-    mov dl, 0xc         ; Length of the string (14)
+    mov dl, 0xc         ; Length of the string (12)
     mov ecx, msg        ; Address of "Hello World\n" string
     jmp x44             ; Jump to the next block of code (at 0x44)
 x44:

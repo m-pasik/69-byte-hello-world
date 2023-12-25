@@ -19,7 +19,7 @@ dd x14                          ; Entry point
 dd 0x2c                         ; Start of the program header table (0x2c)
 
 x20:
-    mov dl, 0xc                 ; Length of the string (14)
+    mov dl, 0xc                 ; Length of the string (12)
     mov ecx, msg                ; Address of "Hello World\n" string
     jmp x44                     ; Jump to the next block of code (at 0x44)
 
