@@ -1,5 +1,5 @@
 # 76 byte Hello World!
-This *might* be the smallest Linux "Hello, World!" that can be made.
+A Tiny Linux "Hello, World!".
 
 ## Simple explanation 
 The entire code of this executable is crammed inside the ELF and program headers, which for 32-bit ELF files take up 52 and 32 bytes respectively, adding up to 84, but if you make the program header begin before the file header ends it's possible to get it down to 76 (maybe smaller but idk if I'd fit everything I need inside).
