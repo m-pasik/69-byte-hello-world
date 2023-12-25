@@ -2,9 +2,10 @@
 org 0x10000                     ; Where the code is placed in memory
 
 ; Beginning of the ELF header
+
 db 0x7f, 'ELF'                  ; Magic number
 
-msg: db 'Hello World', 0xa      ; Message
+msg: db 'Hello World', 0xa      ; Message (overwrites part of e_indent)
 
 dw 0x2                          ; Object file type (executable)
 dw 0x3                          ; Instruction set architecture (x86)
@@ -20,7 +21,7 @@ dd 0x2c                         ; Start of the program header table (0x2c)
 x20:
     mov dl, 0xc                 ; Length of the string (14)
     mov ecx, msg                ; Address of "Hello World\n" string
-    jmp x44                     ; Jump to the next block of code (at 0x38)
+    jmp x44                     ; Jump to the next block of code (at 0x44)
 
 db 0x0                          ; Second byte of e_ehsize entry (the first one was overwritten)
 dw 0x20                         ; Size of a program header table entry
