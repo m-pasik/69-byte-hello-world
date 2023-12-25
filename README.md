@@ -6,6 +6,15 @@ The entire code of this executable is crammed inside the ELF and program headers
 
 Considering that you can't make an executable that has no file and program headers, this is (probably?) the smallest possible Linux executable that prints "Hello World".
 
+## How to build?
+To generate the executable simply run:
+```
+make
+```
+and the executable will be called `hello`. 
+
+Note: You need to have `make` and `nasm` installed.
+
 ## Hex dump
 This is how the executable looks when represented as hex.
 ```
@@ -16,21 +25,20 @@ This is how the executable looks when represented as hex.
 00000040: 1f00 0000 01cd 80b0 01cd 8000            ............
 ```
 
-## Code explanation
+## Code overview
 The code isn't really very complicated. It's basically just what you'd see in some assembly tutorial, but crammed into the header of the executable.
-```gas
-0x14:
-    mov $0x4, %al       # system call number (sys_write)
-    jmp 0x20            # jump to the next segment
-0x20:
-    mov $0x1, %bl       # file descriptor (stdout) 
-    mov $0x10004, %ecx  # address where "Hello World\n" string is stored
-    jmp 0x38            # jump to the next segment
-0x38:
-    mov $0xc, %dl       # length of the string
-    jmp 0x45            # jump to the next segment
-0x45:
-    int $0x80           # invoke system call 
-    mov $0x1, %al       # system call number (sys_exit)
-    int $0x80           # invoke system call
+```asm
+x14:
+    mov al, 0x4         ; System call number (sys_write)
+    jmp x20             ; Jump to the next block of code (at 0x20)
+x20:
+    mov dl, 0xc         ; Length of the string (14)
+    mov ecx, msg        ; Address of "Hello World\n" string
+    jmp x44             ; Jump to the next block of code (at 0x44)
+x44:
+    mov bl, 0x1         ; File descriptor (stdout)
+    int 0x80            ; Invoke system call
+    mov al, 0x1         ; System call number (sys_exit)
+    int 0x80            ; Invoke system call
 ```
+You can find more information in the comments inside hello.asm file
