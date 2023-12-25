@@ -2,7 +2,7 @@
 This *might* be the smallest Linux "Hello, World!" that can be made.
 
 ## Simple explanation 
-The entire code of this executable is crammed inside the ELF and program headers, which for 32-bit ELF files take up 52 and 32 bytes respectively, adding up to 84, but if you make the program header begin before the file header ends it's possible to get it down to 76. 
+The entire code of this executable is crammed inside the ELF and program headers, which for 32-bit ELF files take up 52 and 32 bytes respectively, adding up to 84, but if you make the program header begin before the file header ends it's possible to get it down to 76 (technically even more but then I wouldn't be able to fit all the code). 
 
 Considering that you can't make an executable that has no file and program headers, this is (probably?) the smallest possible Linux executable that prints "Hello, World!".
 
@@ -28,6 +28,8 @@ This is how the executable looks when represented as hex.
 ## Code overview
 In order to print "Hello, World!\n", which (at least if you include comma and an exclamation mark) doesn't fit in any single useable block of memory in the headers I ended up having to make some self-modifying code.
 ```asm
+; [...]
+
 str1: db 'Hello, World'     ; First part of the string
 len1: equ $ - str1          ; Length of the first string
 
