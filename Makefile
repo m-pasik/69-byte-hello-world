@@ -1,13 +1,13 @@
-SOURCE = hello.asm
+SOURCES = hello.asm
 AS = nasm
 ASFLAGS = -f bin
-EXECUTABLE = hello
+EXECUTABLES = ${SOURCES:.asm=}
 
-all: ${EXECUTABLE}
+all: ${EXECUTABLES}
 
-${EXECUTABLE}:${SOURCE}
+%:%.asm
 	${AS} ${ASFLAGS} -o $@ $<
 	chmod +x $@
 
 clean:
-	rm -f ${EXECUTABLE}
+	rm -f ${EXECUTABLES}
