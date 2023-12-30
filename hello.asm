@@ -1,6 +1,6 @@
 [bits 32]
     org 0x10000
-    db 0x7f, 'ELF'   e_indent
+    db 0x7f, 'ELF'
     dd 0x1
     dd 0x0
     dd $$
